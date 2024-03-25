@@ -21,10 +21,12 @@ class ItemPedidoFactory extends Factory
 
     public function definition(): array
     {
-         $pedidos = Pedido::pluck('id');
-         $produtos = Produto::pluck('id');
+        // Obtem os id's 
+        $pedidos = Pedido::pluck('id');
+        $produtos = Produto::pluck('id');
 
         return [
+            // Gera os valores da tabela
             'pedido_id' => fake()->randomElement($pedidos),
             'produto_id' => fake()->randomElement($produtos),
             'quantidade' => fake()->numberBetween(1, 10),

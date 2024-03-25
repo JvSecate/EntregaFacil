@@ -20,13 +20,16 @@ class PedidoFactory extends Factory
      */
     public function definition(): array
     {
+        // Define os diferentes status
         $status = ['Pendente', 'Em andamento', 'Entregue', 'Cancelado'];
 
+        // Obtem os id's
         $clientes = Usuario::where('tipo', 'cliente')->pluck('id');
         $entregadores = Usuario::where('tipo', 'entregador')->pluck('id');
         $restaurantes = Restaurante::pluck('id');
 
         return [
+            // Gera os valores da tabela
             'cliente_id' => fake()->randomElement($clientes),
             'entregador_id' => fake()->randomElement($entregadores),
             'restaurante_id' => fake()->randomElement($restaurantes),

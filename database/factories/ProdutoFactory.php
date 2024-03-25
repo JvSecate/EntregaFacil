@@ -18,8 +18,10 @@ class ProdutoFactory extends Factory
      */
     public function definition(): array
     {
+        // Obtem os id's
         $restaurantes = Restaurante::pluck('id');
         return [
+            // Gera os valores da tabela
             'nome' => fake()->word(),
             'descricao' => fake()->paragraph(),
             'preco' => fake()->randomFloat(2, 1, 1000),
