@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\ItemPedido;
+use App\Models\Pedido;
+use App\Models\Produto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,12 +17,17 @@ class ItemPedidoFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = ItemPedido::class;
+
     public function definition(): array
     {
+         $pedidos = Pedido::pluck('id');
+         $produtos = Produto::pluck('id');
+
         return [
-            'pedido_id' => 0,
-            'produto_id' => 0,
-            'quantidade' => fake()->numberBetween(0,99)
+            'pedido_id' => fake()->randomElement($pedidos),
+            'produto_id' => fake()->randomElement($produtos),
+            'quantidade' => fake()->numberBetween(1, 10),
         ];
     }
 }

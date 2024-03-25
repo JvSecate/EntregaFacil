@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Pedido;
+use App\Models\Usuario;
+use App\Models\Restaurante;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PedidoFactory extends Factory
 {
+    protected $model = Pedido::class;
     /**
      * Define the model's default state.
      *
@@ -16,11 +20,18 @@ class PedidoFactory extends Factory
      */
     public function definition(): array
     {
+        $status = ['Pendente', 'Em andamento', 'Entregue', 'Cancelado'];
+
+        $clientes = Usuario::where('tipo', 'cliente')->pluck('id');
+        $entregadores = Usuario::where('tipo', 'entregador')->pluck('id');
+        $restaurantes = Restaurante::pluck('id');
+
         return [
-            'cliente_id' => 0,
-            'entregador_id' => 0,
-            'restaurante_id' => 0,
-            'status' => "Entregue"
+            'cliente_id' => fake()->randomElement($clientes),
+            'entregador_id' => fake()->randomElement($entregadores),
+            'restaurante_id' => fake()->randomElement($restaurantes),
+            'status' => fake()->randomElement($status),
+            'data_hora' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

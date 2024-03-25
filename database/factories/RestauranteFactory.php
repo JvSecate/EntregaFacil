@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Restaurante;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,8 @@ class RestauranteFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->name(),
-            'endereco' => fake()->unique()->streetAddress(),
+            'nome' => fake()->unique()->company(),
+            'endereco' => fake()->unique()->Address(),
         ];
     }
 }

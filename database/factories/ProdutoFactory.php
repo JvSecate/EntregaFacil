@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Produto;
+use App\Models\Restaurante;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +18,12 @@ class ProdutoFactory extends Factory
      */
     public function definition(): array
     {
+        $restaurantes = Restaurante::pluck('id');
         return [
-            'nome' => fake()->name(),
-            'descricao' => 'teste',
-            'preco' => fake()->numberBetween(0,99),
-            'restaurante_id' => 0,
-        ];
+            'nome' => fake()->word(),
+            'descricao' => fake()->paragraph(),
+            'preco' => fake()->randomFloat(2, 1, 1000),
+            'restaurante_id' => fake()->randomElement($restaurantes)
+        ];  
     }
 }

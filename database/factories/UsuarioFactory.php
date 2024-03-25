@@ -21,7 +21,7 @@ class UsuarioFactory extends Factory
             'nome' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'senha' => fake()->unique()->password(),
-            'tipo' => "Cliente"
+            'tipo' => fake()->randomElement(['Cliente', 'Entregador']),
         ];
     }
 
