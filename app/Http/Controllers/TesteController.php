@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class TesteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usuarios = Usuario::all();
-        return view('teste.usuario.index', compact('usuarios'));
+        //dd('acessando o controller teste controler - index');// mostrar uma mensagem
+        return view ('teste.index',[]);
     }
 
     /**
@@ -36,7 +34,7 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +42,7 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +50,7 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +58,7 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(string $id)
     {
         //
     }

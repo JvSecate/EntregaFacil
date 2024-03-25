@@ -13,7 +13,8 @@ class RestauranteController extends Controller
      */
     public function index()
     {
-        //
+        $restaurantes = Restaurante::all();
+        return view('teste.restaurante.index', compact('restaurantes'));
     }
 
     /**

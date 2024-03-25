@@ -13,7 +13,8 @@ class ItemPedidoController extends Controller
      */
     public function index()
     {
-        //
+        $item_pedidos = ItemPedido::all();
+        return view('teste.item_pedidos.index', compact('item_pedidos'));
     }
 
     /**
