@@ -18,6 +18,7 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
+            // Gera os valores da tabela
             'nome' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'senha' => fake()->unique()->password(),
