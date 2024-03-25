@@ -18,6 +18,7 @@ class RestauranteFactory extends Factory
     public function definition(): array
     {
         return [
+            // Gera os valores da tabela
             'nome' => fake()->unique()->company(),
             'endereco' => fake()->unique()->Address(),
         ];
