@@ -77,10 +77,10 @@ class RestauranteController extends Controller
 
             // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do restaurante
-            return redirect()->route('teste.restaurante.show', $restaurante->id)->with('success', 'Restaurante atualizado com sucesso!');
+            return view('teste.restaurante.show', compact('restaurante'));
         } catch (\Exception $e) {
             // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            //return redirect()->route('teste.restaurante.edit', $id)->with('error', 'Erro ao atualizar restaurante: ' . $e->getMessage());
+            return view('teste.restaurante.edit', compact('restaurante'));
         }
     }
 

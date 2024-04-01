@@ -70,6 +70,9 @@ class PedidoController extends Controller
             // Adicione aqui outras regras de validação, se necessário
         ]);
 
+        $usuarios = Usuario::all();
+        $restaurantes = Restaurante::all();
+
         try {
             // Encontra o pedido pelo ID
             $pedido = Pedido::findOrFail($id);
@@ -86,10 +89,10 @@ class PedidoController extends Controller
 
             // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do pedido
-            return redirect()->route('teste.pedido.show', $pedido->id)->with('success', 'Pedido atualizado com sucesso!');
+            return view('teste.pedido.show', compact('pedido', 'usuarios', 'restaurantes'));
         } catch (\Exception $e) {
             // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            //return redirect()->route('teste.pedido.edit', $id)->with('error', 'Erro ao atualizar pedido: ' . $e->getMessage());
+            return view('teste.pedido.edit', compact('pedido', 'usuarios', 'restaurantes'));        
         }
     }
 

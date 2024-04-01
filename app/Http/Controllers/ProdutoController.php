@@ -80,11 +80,10 @@ class ProdutoController extends Controller
 
             // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do produto
-            return redirect()->route('teste.produto.show', $produto->id)->with('success', 'Produto atualizado com sucesso!');
+            return view('teste.produto.show', compact('produto'));
         } catch (\Exception $e) {
             // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            //return redirect()->route('teste.produto.edit', $id)->with('error', 'Erro ao atualizar produto: ' . $e->getMessage());
-        }
+            return view('teste.produto.edit', compact('produto'));        }
     }
 
 

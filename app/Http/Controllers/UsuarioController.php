@@ -77,10 +77,10 @@ class UsuarioController extends Controller
 
             // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do usuário
-            return redirect()->route('teste.usuario.show', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
+            return view('teste.usuario.show', compact('usuario'));
         } catch (\Exception $e) {
             // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            //return redirect()->route('teste.usuario.edit', $id)->with('error', 'Erro ao atualizar usuário: ' . $e->getMessage());
+            return view('teste.usuario.edit', compact('usuario'));
         }
     }
 

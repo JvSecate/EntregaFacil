@@ -64,7 +64,7 @@ class ItemPedidoController extends Controller
             'quantidade' => 'required|integer|min:1',
             // Adicione aqui outras regras de validação, se necessário
         ]);
-
+        $produtos = Produto::all();
         try {
             // Encontra o item de pedido pelo ID
             $itemPedido = ItemPedido::findOrFail($id);
@@ -79,10 +79,11 @@ class ItemPedidoController extends Controller
 
             // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do item de pedido
-            return redirect()->route('teste.item_pedidos.show', $itemPedido->id)->with('success', 'Item-pedido atualizado com sucesso!');
+            //return view('teste.item_pedidos.show', compact('itemPedido', 'produtos'))
+            return view('teste.item_pedidos.show', compact('itemPedido', 'produtos'));
         } catch (\Exception $e) {
             // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            //return redirect()->route('teste.item_pedidos.edit', $id)->with('error', 'Erro ao atualizar item-pedido: ' . $e->getMessage());
+            return view('teste.item_pedidos.edit', compact('itemPedido', 'produtos'));
         }
     }
 
