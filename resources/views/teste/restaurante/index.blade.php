@@ -22,23 +22,20 @@
                 <td>{{ $restaurante->nome }}</td>
                 <td>{{ $restaurante->endereco }}</td>
                 <td>
-                    <!--
-                    <a href="{{ route('restaurante.index') }}">Detalhes</a>
+                   
+                    <a href="{{ route('restaurante.show', $restaurante->id) }}">Detalhes</a>
                     <a href="{{ route('restaurante.index') }}">Editar</a>
                     <form action="{{ route('restaurante.index') }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Deletar</button>
                     </form>
-                    -->
                 </td>
             </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    <!--
     <a href="{{ route('restaurante.index') }}">Incluir Restaurante</a>
-    -->
 </body>
 </html>

@@ -36,17 +36,19 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show($id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+        return view('teste.usuario.show', compact('usuario'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit($id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
     }
 
     /**

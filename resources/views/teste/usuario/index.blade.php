@@ -24,22 +24,19 @@
                 <td>{{ $usuario->email }}</td>
                 <td>{{ $usuario->tipo }}</td>
                 <td>
-                    <!--
-                    <a href="{{ route('usuario.index') }}">Detalhes</a>
+                    
+                    <a href="{{ route('usuario.show', $usuario->id) }}">Detalhes</a>
                     <a href="{{ route('usuario.index') }}">Editar</a>
                     <form action="{{ route('usuario.index') }}" method="POST"> 
                         @csrf
                         @method('DELETE')
                         <button type="submit">Deletar</button>
                     </form>
-                    -->
                     </td>
             </tr>
             @endforeach
             </tbody>
-        <!--
         </table><a href="{{ route('usuario.index') }}">Inclusão</a>
-        -->
     </div>
 </body>
 </html>

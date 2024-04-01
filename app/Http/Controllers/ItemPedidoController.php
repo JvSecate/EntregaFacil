@@ -36,9 +36,10 @@ class ItemPedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ItemPedido $itemPedido)
+    public function show($id)
     {
-        //
+        $itemPedido = ItemPedido::findOrFail($id);
+        return view('teste.item_pedidos.show', compact('itemPedido'));
     }
 
     /**

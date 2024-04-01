@@ -36,9 +36,10 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pedido $pedido)
+    public function show($id)
     {
-        //
+        $pedido = pedido::findOrFail($id);
+        return view('teste.pedido.show', compact('pedido'));
     }
 
     /**

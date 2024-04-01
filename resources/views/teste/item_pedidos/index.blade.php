@@ -24,8 +24,7 @@
                 <td>{{ $itemPedido->pedido->id }}</td>
                 <td>{{ $itemPedido->quantidade }}</td>
                 <td>
-                    <!--
-                    <a href="{{ route('item_pedidos.index') }}">Detalhes</a>
+                    <a href="{{ route('item_pedidos.show', $itemPedido->id) }}">Detalhes</a>
                     <a href="{{ route('item_pedidos.index') }}">Editar</a>
                      
                     <form action="{{ route('item_pedidos.index') }}" method="POST">
@@ -33,15 +32,12 @@
                         @method('DELETE')
                         <button type="submit">Deletar</button>
                     </form>
-                    -->
                 </td>
             </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    <!--
     <a href="{{ route('item_pedidos.index') }}">Incluir Item de Pedido</a>
-    -->
 </body>
 </html>

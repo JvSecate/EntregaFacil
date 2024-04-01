@@ -26,24 +26,19 @@
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->restaurante->nome }}</td>
                 <td>
-                    <!--
-                    <a href="{{ route('produto.index') }}">Detalhes</a>
+                    <a href="{{ route('produto.show', $produto->id)  }}">Detalhes</a>
                     <a href="{{ route('produto.index') }}">Editar</a>
-                    Adicione um formulário para deletar o produto 
                     <form action="{{ route('produto.index') }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Deletar</button>
                     </form>
-                    -->
                 </td>
             </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    <!-- 
     <a href="{{ route('produto.index') }}">Incluir Produto</a>
-    -->
 </body>
 </html>
