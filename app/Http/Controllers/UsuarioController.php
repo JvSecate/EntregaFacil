@@ -48,15 +48,40 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = Usuario::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
+        return view('teste.usuario.edit', compact('usuario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados do formulário
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios,email,' . $id,
+            'tipo' => 'required|in:Cliente,Entregador',
+        ]);
+
+        try {
+            // Encontra o usuário pelo ID
+            $usuario = Usuario::findOrFail($id);
+
+            // Atualiza os campos do usuário com os dados do formulário
+            $usuario->nome = $request->nome;
+            $usuario->email = $request->email;
+            $usuario->tipo = $request->tipo;
+
+            // Salva as alterações no banco de dados
+            $usuario->save();
+
+            // TODO Corrigir redirecionar/ Testar try/catch
+            // Redireciona de volta para a página de detalhes do usuário
+            return redirect()->route('teste.usuario.show', $usuario->id)->with('success', 'Usuário atualizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+            //return redirect()->route('teste.usuario.edit', $id)->with('error', 'Erro ao atualizar usuário: ' . $e->getMessage());
+        }
     }
 
     /**

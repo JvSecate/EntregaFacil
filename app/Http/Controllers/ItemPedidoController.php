@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemPedido;
+use App\Models\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -45,18 +46,46 @@ class ItemPedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ItemPedido $itemPedido)
+    public function edit($id)
     {
-        //
+        $itemPedido = ItemPedido::findOrFail($id);
+        $produtos = Produto::all();
+        return view('teste.item_pedidos.edit', compact('itemPedido', 'produtos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ItemPedido $itemPedido)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados do formulário
+        $request->validate([
+            'produto' => 'required|exists:produtos,id',
+            'quantidade' => 'required|integer|min:1',
+            // Adicione aqui outras regras de validação, se necessário
+        ]);
+
+        try {
+            // Encontra o item de pedido pelo ID
+            $itemPedido = ItemPedido::findOrFail($id);
+
+            // Atualiza os campos do item de pedido com os dados do formulário
+            $itemPedido->produto_id = $request->produto;
+            $itemPedido->quantidade = $request->quantidade;
+            // Atualize outros campos conforme necessário
+
+            // Salva as alterações no banco de dados
+            $itemPedido->save();
+
+            // TODO Corrigir redirecionar/ Testar try/catch
+            // Redireciona de volta para a página de detalhes do item de pedido
+            return redirect()->route('teste.item_pedidos.show', $itemPedido->id)->with('success', 'Item-pedido atualizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+            //return redirect()->route('teste.item_pedidos.edit', $id)->with('error', 'Erro ao atualizar item-pedido: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -27,7 +27,7 @@
                 <td>{{ $produto->restaurante->nome }}</td>
                 <td>
                     <a href="{{ route('produto.show', $produto->id)  }}">Detalhes</a>
-                    <a href="{{ route('produto.index') }}">Editar</a>
+                    <a href="{{ route('produto.edit', $produto->id) }}">Editar</a>
                     <form action="{{ route('produto.index') }}" method="POST">
                         @csrf
                         @method('DELETE')

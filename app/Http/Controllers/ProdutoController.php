@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurante;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -45,18 +46,47 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Produto $produto)
+    public function edit($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        return view('teste.produto.edit', compact('produto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados do formulário
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'preco' => 'required|numeric|min:0',
+            // Adicione aqui outras regras de validação, se necessário
+        ]);
+
+        try {
+            // Encontra o produto pelo ID
+            $produto = Produto::findOrFail($id);
+
+            // Atualiza os campos do produto com os dados do formulário
+            $produto->nome = $request->nome;
+            $produto->descricao = $request->descricao;
+            $produto->preco = $request->preco;
+            // Atualize outros campos conforme necessário
+
+            // Salva as alterações no banco de dados
+            $produto->save();
+
+            // TODO Corrigir redirecionar/ Testar try/catch
+            // Redireciona de volta para a página de detalhes do produto
+            return redirect()->route('teste.produto.show', $produto->id)->with('success', 'Produto atualizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+            //return redirect()->route('teste.produto.edit', $id)->with('error', 'Erro ao atualizar produto: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

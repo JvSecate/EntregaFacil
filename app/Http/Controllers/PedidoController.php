@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Restaurante;
 use App\Http\Controllers\Controller;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -45,18 +47,52 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pedido $pedido)
+    public function edit($id)
     {
-        //
+        $pedido = Pedido::findOrFail($id);
+        $usuarios = Usuario::all();
+        $restaurantes = Restaurante::all();
+        return view('teste.pedido.edit', compact('pedido', 'usuarios', 'restaurantes'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados do formulário
+        $request->validate([
+            'cliente' => 'required|exists:usuarios,id',
+            'entregador' => 'required|exists:usuarios,id',
+            'restaurante' => 'required|exists:restaurantes,id',
+            'status' => 'required|in:Em andamento,Concluído',
+            // Adicione aqui outras regras de validação, se necessário
+        ]);
+
+        try {
+            // Encontra o pedido pelo ID
+            $pedido = Pedido::findOrFail($id);
+
+            // Atualiza os campos do pedido com os dados do formulário
+            $pedido->cliente_id = $request->cliente;
+            $pedido->entregador_id = $request->entregador;
+            $pedido->restaurante_id = $request->restaurante;
+            $pedido->status = $request->status;
+            // Atualize outros campos conforme necessário
+
+            // Salva as alterações no banco de dados
+            $pedido->save();
+
+            // TODO Corrigir redirecionar/ Testar try/catch
+            // Redireciona de volta para a página de detalhes do pedido
+            return redirect()->route('teste.pedido.show', $pedido->id)->with('success', 'Pedido atualizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+            //return redirect()->route('teste.pedido.edit', $id)->with('error', 'Erro ao atualizar pedido: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

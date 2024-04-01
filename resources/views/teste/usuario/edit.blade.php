@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Editar Usuário</h1>
-    <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
+    <form action="{{ route('usuario.update', $usuario->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div>
@@ -27,6 +27,6 @@
         </div>
         <button type="submit">Salvar Alterações</button>
     </form>
-    <a href="{{ route('usuarios.index') }}">Cancelar</a>
+    <a href="{{ route('usuario.index') }}">Cancelar</a>
 </body>
 </html>

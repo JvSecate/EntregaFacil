@@ -27,7 +27,7 @@
                 <td>{{ $pedido->status }}</td>
                 <td>
                     <a href="{{ route('pedido.show', $pedido->id) }}">Detalhes</a>
-                    <a href="{{ route('pedido.index') }}">Editar</a>
+                    <a href="{{ route('pedido.edit', $pedido->id) }}">Editar</a>
                     <form action="{{ route('pedido.index') }}" method="POST">
                         @csrf
                         @method('DELETE')

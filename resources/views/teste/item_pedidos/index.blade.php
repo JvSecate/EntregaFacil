@@ -25,7 +25,7 @@
                 <td>{{ $itemPedido->quantidade }}</td>
                 <td>
                     <a href="{{ route('item_pedidos.show', $itemPedido->id) }}">Detalhes</a>
-                    <a href="{{ route('item_pedidos.index') }}">Editar</a>
+                    <a href="{{ route('item_pedidos.edit', $itemPedido->id) }}">Editar</a>
                      
                     <form action="{{ route('item_pedidos.index') }}" method="POST">
                         @csrf

@@ -45,17 +45,43 @@ class RestauranteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Restaurante $restaurante)
+    public function edit($id)
     {
-        //
+        $restaurante = Restaurante::findOrFail($id);
+        return view('teste.restaurante.edit', compact('restaurante'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Restaurante $restaurante)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados do formulário
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'endereco' => 'required|string|max:255',
+            // Adicione aqui outras regras de validação, se necessário
+        ]);
+
+        try {
+            // Encontra o restaurante pelo ID
+            $restaurante = Restaurante::findOrFail($id);
+
+            // Atualiza os campos do restaurante com os dados do formulário
+            $restaurante->nome = $request->nome;
+            $restaurante->endereco = $request->endereco;
+            // Atualize outros campos conforme necessário
+
+            // Salva as alterações no banco de dados
+            $restaurante->save();
+
+            // TODO Corrigir redirecionar/ Testar try/catch
+            // Redireciona de volta para a página de detalhes do restaurante
+            return redirect()->route('teste.restaurante.show', $restaurante->id)->with('success', 'Restaurante atualizado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+            //return redirect()->route('teste.restaurante.edit', $id)->with('error', 'Erro ao atualizar restaurante: ' . $e->getMessage());
+        }
     }
 
     /**
