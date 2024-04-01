@@ -77,12 +77,11 @@ class ItemPedidoController extends Controller
             // Salva as alterações no banco de dados
             $itemPedido->save();
 
-            // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do item de pedido
-            //return view('teste.item_pedidos.show', compact('itemPedido', 'produtos'))
             return view('teste.item_pedidos.show', compact('itemPedido', 'produtos'));
-        } catch (\Exception $e) {
-            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição
             return view('teste.item_pedidos.edit', compact('itemPedido', 'produtos'));
         }
     }

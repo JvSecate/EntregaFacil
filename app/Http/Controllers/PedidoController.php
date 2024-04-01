@@ -55,7 +55,6 @@ class PedidoController extends Controller
         return view('teste.pedido.edit', compact('pedido', 'usuarios', 'restaurantes'));
     }
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -66,7 +65,7 @@ class PedidoController extends Controller
             'cliente' => 'required|exists:usuarios,id',
             'entregador' => 'required|exists:usuarios,id',
             'restaurante' => 'required|exists:restaurantes,id',
-            'status' => 'required|in:Em andamento,Concluído',
+            'status' => 'required|in:Em andamento,Entregue,Cancelado',
             // Adicione aqui outras regras de validação, se necessário
         ]);
 
@@ -87,12 +86,12 @@ class PedidoController extends Controller
             // Salva as alterações no banco de dados
             $pedido->save();
 
-            // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do pedido
             return view('teste.pedido.show', compact('pedido', 'usuarios', 'restaurantes'));
-        } catch (\Exception $e) {
-            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            return view('teste.pedido.edit', compact('pedido', 'usuarios', 'restaurantes'));        
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição
+           return view('teste.pedido.edit', compact('pedido', 'usuarios', 'restaurantes'))->with('error', $e->getMessage());        
         }
     }
 

@@ -46,3 +46,8 @@ Route::put('/restaurante/{id}' , [RestauranteController::class,'update']);
 Route::put('/produto/{id}' , [ProdutoController::class,'update']);
 Route::put('/pedido/{id}' , [PedidoController::class,'update']);
 Route::put('/item_pedidos/{id}' , [ItemPedidoController::class,'update']);
+
+# Destroy
+
+
+# Create

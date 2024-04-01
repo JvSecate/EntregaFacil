@@ -42,7 +42,8 @@
             <label for="status">Status:</label>
             <select name="status" id="status">
                 <option value="Em andamento" {{ $pedido->status === 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
-                <option value="Concluído" {{ $pedido->status === 'Concluído' ? 'selected' : '' }}>Concluído</option>
+                <option value="Entregue" {{ $pedido->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
+                <option value="Cancelado" {{ $pedido->status === 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
                 <!-- Adicione aqui outros status, se necessário -->
             </select>
         </div>

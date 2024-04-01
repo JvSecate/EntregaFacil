@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autores</title>
+    <title>Lista de Usuários</title>
 </head>
 <body>
-    <h1>Lista de Autores</h1>
+    <h1>Lista de Usuários</h1>
     <div>
         <table>
             <tr>

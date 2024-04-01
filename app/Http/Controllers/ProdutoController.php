@@ -78,12 +78,13 @@ class ProdutoController extends Controller
             // Salva as alterações no banco de dados
             $produto->save();
 
-            // TODO Corrigir redirecionar/ Testar try/catch
             // Redireciona de volta para a página de detalhes do produto
             return view('teste.produto.show', compact('produto'));
-        } catch (\Exception $e) {
-            // Em caso de erro, redireciona de volta para a página de edição com uma mensagem de erro
-            return view('teste.produto.edit', compact('produto'));        }
+        }
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a página de edição
+            return view('teste.produto.edit', compact('produto'));        
+        }
     }
 
 
