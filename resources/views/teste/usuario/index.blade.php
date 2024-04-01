@@ -27,7 +27,7 @@
                     
                     <a href="{{ route('usuario.show', $usuario->id) }}">Detalhes</a>
                     <a href="{{ route('usuario.edit', $usuario->id) }}">Editar</a>
-                    <form action="{{ route('usuario.index') }}" method="POST"> 
+                    <form action="{{ route('usuario.destroy', $usuario->id) }}" method="POST"> 
                         @csrf
                         @method('DELETE')
                         <button type="submit">Deletar</button>

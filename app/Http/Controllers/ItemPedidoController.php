@@ -90,8 +90,21 @@ class ItemPedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ItemPedido $itemPedido)
+    public function destroy($id)
     {
-        //
+        try {
+            // Encontra o item-pedido pelo ID
+            $itemPedido = ItemPedido::findOrFail($id);
+
+            // Exclui o item-pedido do banco de dados
+            $itemPedido->delete();
+
+            // Redireciona de volta para a lista de item-pedidos
+            return redirect()->route('item_pedidos.index')->with('success', 'item-pedido excluído com sucesso.');
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a lista de item-pedidos
+            return redirect()->route('item_pedidos.index')->with('error', 'Erro ao excluir item_pedido.');
+        }
     }
 }

@@ -91,8 +91,21 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
-        //
+        try {
+            // Encontra o restaurante pelo ID
+            $produto = Produto::findOrFail($id);
+
+            // Exclui o produto do banco de dados
+            $produto->delete();
+
+            // Redireciona de volta para a lista de produtos
+            return redirect()->route('produto.index')->with('success', 'produto excluído com sucesso.');
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a lista de produtos
+            return redirect()->route('produto.index')->with('error', 'Erro ao excluir o produto.');
+        }
     }
 }

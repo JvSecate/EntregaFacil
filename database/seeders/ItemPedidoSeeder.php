@@ -13,6 +13,6 @@ class ItemPedidoSeeder extends Seeder
      */
     public function run(): void
     {
-        ItemPedido::factory(50)->create();
+        ItemPedido::factory(10)->create();
     }
 }

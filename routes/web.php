@@ -48,6 +48,10 @@ Route::put('/pedido/{id}' , [PedidoController::class,'update']);
 Route::put('/item_pedidos/{id}' , [ItemPedidoController::class,'update']);
 
 # Destroy
-
+Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy']);
+Route::delete('/restaurante/{id}', [RestauranteController::class, 'destroy']);
+Route::delete('/produto/{id}', [ProdutoController::class, 'destroy']);
+Route::delete('/pedido/{id}', [PedidoController::class, 'destroy']);
+Route::delete('/item_pedidos/{id}', [ItemPedidoController::class, 'destroy']);
 
 # Create

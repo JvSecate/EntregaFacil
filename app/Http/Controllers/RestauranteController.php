@@ -87,8 +87,21 @@ class RestauranteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Restaurante $restaurante)
+    public function destroy($id)
     {
-        //
+        try {
+            // Encontra o restaurante pelo ID
+            $restaurante = Restaurante::findOrFail($id);
+
+            // Exclui o restaurante do banco de dados
+            $restaurante->delete();
+
+            // Redireciona de volta para a lista de restaurantes
+            return redirect()->route('restaurante.index')->with('success', 'restaurante excluído com sucesso.');
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a lista de restaurantes
+            return redirect()->route('restaurante.index')->with('error', 'Erro ao excluir o restaurante.');
+        }
     }
 }

@@ -99,8 +99,21 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
-        //
+        try {
+            // Encontra o Pedido pelo ID
+            $pedido = Pedido::findOrFail($id);
+
+            // Exclui o pedido do banco de dados
+            $pedido->delete();
+
+            // Redireciona de volta para a lista de pedidos
+            return redirect()->route('pedido.index')->with('success', 'pedido excluído com sucesso.');
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a lista de pedidos
+            return redirect()->route('pedido.index')->with('error', 'Erro ao excluir o pedido.');
+        }
     }
 }

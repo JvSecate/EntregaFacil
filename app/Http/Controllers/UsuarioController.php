@@ -87,8 +87,21 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
-        //
+        try {
+            // Encontra o usuário pelo ID
+            $usuario = Usuario::findOrFail($id);
+
+            // Exclui o usuário do banco de dados
+            $usuario->delete();
+
+            // Redireciona de volta para a lista de usuários
+            return redirect()->route('usuario.index')->with('success', 'Usuário excluído com sucesso.');
+        } 
+        catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para a lista de usuários
+            return redirect()->route('usuario.index')->with('error', 'Erro ao excluir o usuário.');
+        }
     }
 }

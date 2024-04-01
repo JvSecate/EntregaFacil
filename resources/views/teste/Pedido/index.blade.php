@@ -28,7 +28,7 @@
                 <td>
                     <a href="{{ route('pedido.show', $pedido->id) }}">Detalhes</a>
                     <a href="{{ route('pedido.edit', $pedido->id) }}">Editar</a>
-                    <form action="{{ route('pedido.index') }}" method="POST">
+                    <form action="{{ route('pedido.destroy', $pedido->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Deletar</button>
