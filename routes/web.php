@@ -55,3 +55,7 @@ Route::delete('/pedido/{id}', [PedidoController::class, 'destroy']);
 Route::delete('/item_pedidos/{id}', [ItemPedidoController::class, 'destroy']);
 
 # Create
+
+##Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Testes</title>
-</head>
+    <x-head/>
 <body>
+    <x-navbar-teste/>
     <h1>Painel de Testes</h1>
     <ul>
         <li><a href="{{ route('usuario.index') }}">Usuários</a></li>

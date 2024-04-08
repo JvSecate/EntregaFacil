@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Produto</title>
-</head>
+    <x-head/>
 <body>
+    <x-navbar-teste/>
     <h1>Editar Produto</h1>
     <form action="{{ route('produto.update', $produto->id) }}" method="POST">
         @csrf

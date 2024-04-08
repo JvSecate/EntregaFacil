@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Pedido</title>
-</head>
+    <x-head/>
 <body>
+    <x-navbar-teste/>
     <h1>Detalhes do Pedido</h1>
     <div>
         <p><strong>ID:</strong> {{ $pedido->id }}</p>
