@@ -34,8 +34,12 @@ php artisan migrate
 ```
 php artisan db:seed
 ```
+8. Ligue o projeto no localhost
+```
+php artisan serve
+```
 
-8. Acesse o aplicativo em localhost:8000
+10. Acesse o aplicativo em localhost:8000
 ```
 Main -> localhost:8000/app
 Testes -> localhost:8000/teste
