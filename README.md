@@ -39,7 +39,7 @@ php artisan db:seed
 php artisan serve
 ```
 
-10. Acesse o aplicativo em localhost:8000
+9. Acesse o aplicativo em localhost:8000
 ```
 Main -> localhost:8000/app
 Testes -> localhost:8000/teste
