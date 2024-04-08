@@ -2,6 +2,10 @@
 
 > Aplicativo de delivery usando php e laravel, IFSP 2024 - PRWE7 - PROGRAMAÇÃO PARA WEB.
 
+## Apresentação
+
+> 27/05 - Seminário Laravel Nova + PDF.
+
 ## Intalação e Uso
 
 1. Clone o repositório
