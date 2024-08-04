@@ -4,17 +4,16 @@ namespace App\Filament\Resources\RestauranteResource\Pages;
 
 use App\Filament\Resources\RestauranteResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditRestaurante extends EditRecord
+class ViewRestaurante extends ViewRecord
 {
     protected static string $resource = RestauranteResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\EditAction::make(),
         ];
     }
 }

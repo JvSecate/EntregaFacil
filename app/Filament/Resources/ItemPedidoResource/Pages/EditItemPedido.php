@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\RestauranteResource\Pages;
+namespace App\Filament\Resources\ItemPedidoResource\Pages;
 
-use App\Filament\Resources\RestauranteResource;
+use App\Filament\Resources\ItemPedidoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditRestaurante extends EditRecord
+class EditItemPedido extends EditRecord
 {
-    protected static string $resource = RestauranteResource::class;
+    protected static string $resource = ItemPedidoResource::class;
 
     protected function getHeaderActions(): array
     {
