@@ -4,12 +4,12 @@
 
 ## Apresentação
 
-> 27/05 - Seminário Laravel Nova + PDF.
+> 12/08 - Seminário Laravel Filament + PDF tutorial.
 
 ## Intalação e Uso
 
 1. Clone o repositório
-2. De Checkout para o branch desejado (Main ou Teste)
+2. De Checkout para o branch desejado
 3. Instale o aplicativo usando:
 
 ```
@@ -38,36 +38,22 @@ php artisan db:seed
 ```
 php artisan serve
 ```
-
-9. Instale o Vite e o bootstrap com:
-
+9. Crie um usuário utilizando:
 ```
-npm install
+php artisan make:filament-user
 ```
-
-10. Rode o servidor local com:
-
+10. Acesse o aplicativo em 
 ```
-npm run dev
-```
-
-11. Acesse o aplicativo em localhost:8000
-```
-Main -> localhost:8000/app
-Testes -> localhost:8000/teste
+localhost:8000/admin
+ou
+localhost/admin
 ```
 
 ## Contribuição
 
-1. Configure o git com email e nome do usuário (É necessario estar na lista de contribuidores)
+Configure o git com email e nome do usuário (É necessario estar na lista de contribuidores)
 
 ```
 git config --global user.email "usuario@exemplo.com"
 git config --global user.name "NomeUsuario"
 ```
-
-2. Ao criar ou alterar views utilizadas para testar as funções dos controllers. Utilize resources/views/teste (Disponivel apenas no repositório teste). *Ao terminar use commit no branch 'teste'*.
-
-3. Ao criar ou alterar view utilizadas no aplicativo principal. Utilize resources/views/app (Disponivel em ambos repositórios). *Ao terminar use commit no branch 'teste'*.
-
-4. Após verificar e comunicar alterações em resources/views/app *Use commit no branch 'teste'* (*Não inclua resources/views/teste*)
